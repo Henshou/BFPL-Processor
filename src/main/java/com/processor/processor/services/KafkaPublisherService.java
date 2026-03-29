@@ -19,11 +19,8 @@ public class KafkaPublisherService {
         try {
             String json = objectMapper.writeValueAsString(parsedLog);
 
-            String topic = parsedLog.getOutput().getFirst();
+            kafkaTemplate.send("processor-topic", json);
 
-            kafkaTemplate.send(topic, json);
-
-            System.out.println("Sent parsed log to topic: " + topic);
         } catch (Exception e) {
             e.printStackTrace();
 

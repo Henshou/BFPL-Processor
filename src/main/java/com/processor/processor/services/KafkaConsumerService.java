@@ -18,7 +18,7 @@ public class KafkaConsumerService {
     public void consumeFile(String message) {
         System.out.println("Received message: " + message);
 
-        ParsedLog parsedLog = new LogParserService().parseRawLog(message);
+        ParsedLog parsedLog = logParserService.parseRawLog(message);
 
         kafkaPublisherService.publishParsedLog(parsedLog);
 
